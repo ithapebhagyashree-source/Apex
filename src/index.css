@@ -1,0 +1,232 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Barlow Condensed", system-ui, sans-serif;
+  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --color-obsidian: #09090b;
+  --color-surface: #111113;
+  --color-surface-elevated: #18181b;
+  --color-crimson: #e11d48;
+  --color-gold: #f59e0b;
+}
+
+@layer base {
+  html {
+    background-color: #09090b;
+    color: #f4f4f5;
+    font-family: var(--font-sans);
+    color-scheme: dark;
+  }
+
+  body {
+    background-color: #09090b;
+    color: #f4f4f5;
+    overflow-x: hidden;
+    letter-spacing: 0.008em;
+  }
+
+  button,
+  a,
+  input,
+  textarea,
+  select {
+    touch-action: manipulation;
+  }
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-mono-tabular {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.pb-safe {
+  padding-bottom: max(0.5rem, env(safe-area-inset-bottom));
+}
+
+/* Refined dark scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #09090b;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #27272a;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3f3f46;
+}
+
+/* Anime character subtle motion & power-up aura animations */
+@keyframes animeFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-2.5px);
+  }
+}
+
+@keyframes animeBarbell {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes animeSpinSlow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes animeGlowPulse {
+  0%, 100% {
+    opacity: 0.45;
+    transform: scale(0.96);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.04);
+  }
+}
+
+@keyframes animePowerUpRing {
+  0% {
+    opacity: 0.95;
+    transform: scale(0.55);
+  }
+  65% {
+    opacity: 0.7;
+    transform: scale(1.22);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.42);
+  }
+}
+
+@keyframes animePowerUpSurge {
+  0% {
+    filter: drop-shadow(0 0 0px rgba(245, 158, 11, 0));
+    transform: scale(1);
+  }
+  28% {
+    filter: drop-shadow(0 0 14px rgba(245, 158, 11, 0.95))
+      drop-shadow(0 0 24px rgba(225, 29, 72, 0.7));
+    transform: scale(1.09);
+  }
+  70% {
+    filter: drop-shadow(0 0 10px rgba(16, 185, 129, 0.75));
+    transform: scale(1.03);
+  }
+  100% {
+    filter: drop-shadow(0 0 0px rgba(245, 158, 11, 0));
+    transform: scale(1);
+  }
+}
+
+@keyframes animeSparkRise {
+  0% {
+    opacity: 0;
+    transform: translateY(8px) scale(0.7);
+  }
+  30% {
+    opacity: 1;
+    transform: translateY(-2px) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-16px) scale(0.85);
+  }
+}
+
+.anime-float {
+  animation: animeFloat 2.8s ease-in-out infinite;
+}
+
+.anime-barbell {
+  animation: animeBarbell 1.9s ease-in-out infinite;
+}
+
+.anime-spin-slow {
+  animation: animeSpinSlow 14s linear infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.anime-glow-pulse {
+  animation: animeGlowPulse 2.4s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.anime-powerup-ring {
+  animation: animePowerUpRing 1.05s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.anime-powerup-surge {
+  animation: animePowerUpSurge 1.05s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.anime-spark-rise {
+  animation: animeSparkRise 1s ease-out forwards;
+}
+
+/* Botanical plant gentle sway & firefly drift (compositor-only) */
+@keyframes plantSway {
+  0%, 100% {
+    transform: rotate(-1.4deg);
+  }
+  50% {
+    transform: rotate(1.4deg);
+  }
+}
+
+@keyframes moteFloat {
+  0%, 100% {
+    opacity: 0.35;
+    transform: translateY(0px) scale(0.92);
+  }
+  50% {
+    opacity: 0.95;
+    transform: translateY(-5px) scale(1.08);
+  }
+}
+
+.plant-sway {
+  animation: plantSway 5.5s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: bottom center;
+}
+
+.mote-float {
+  animation: moteFloat 3.6s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
